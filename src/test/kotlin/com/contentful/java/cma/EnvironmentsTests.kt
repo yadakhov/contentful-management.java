@@ -152,20 +152,20 @@ class EnvironmentsTests {
 
         val newEnvironment = CMAEnvironment().apply {
             name = "environment_from_id"
-            id = "branched_from_io"
+            id = "cloned_from_io"
         }
 
         val result = assertTestCallback(
                 client!!
                         .environments()
                         .async()
-                        .branch(
+                        .clone(
                                 sourceEnvironment,
                                 newEnvironment,
                                 TestCallback()
                         ) as TestCallback)!!
 
-        assertEquals("branched_from_io", result.id)
+        assertEquals("cloned_from_io", result.id)
         assertEquals("<space_id>", result.spaceId)
 
         // Request
@@ -173,7 +173,7 @@ class EnvironmentsTests {
         assertEquals("PUT", recordedRequest.method)
         assertTrue(recordedRequest.headers.names().contains("X-Contentful-Source-Environment"))
         assertEquals("source", recordedRequest.headers["X-Contentful-Source-Environment"])
-        assertEquals("/spaces/configuredSpaceId/environments/branched_from_io", recordedRequest.path)
+        assertEquals("/spaces/configuredSpaceId/environments/cloned_from_io", recordedRequest.path)
     }
 
     @test
@@ -197,13 +197,13 @@ class EnvironmentsTests {
                 client!!
                         .environments()
                         .async()
-                        .branch(
+                        .clone(
                                 sourceEnvironment,
                                 newEnvironment,
                                 TestCallback()
                         ) as TestCallback)!!
 
-        assertEquals("branched_from_io", result.id)
+        assertEquals("cloned_from_io", result.id)
         assertEquals("<space_id>", result.spaceId)
 
         // Request

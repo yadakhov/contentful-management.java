@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version [3.3.1] - (2019-04-25)
+- Renamed `branch()` method to `clone()`. The old `branch()` method still exists to maintain backward compatibility 
+until next major release and has @Deprecated annotation. 
+
 ## Version [3.3.0] - (2019-03-04)
 - add environment branching
 
